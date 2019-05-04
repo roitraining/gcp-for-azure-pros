@@ -1,0 +1,7 @@
+# To Build on local machine
+docker build -t drehnstrom/space-invaders:latest .
+
+docker run -d -p 80:80 drehnstrom/space-invaders:latest
+
+# To build in GCP
+gcloud builds submit --tag=gcr.io/gcp-for-azure-pros/space-invaders:latest
