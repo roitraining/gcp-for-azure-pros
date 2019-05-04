@@ -1,0 +1,7 @@
+# To Build on local machine
+docker build -t drehnstrom/dotnet-app:v0.1 .
+
+docker run -d -p 8080:8080 drehnstrom/dotnet-app:v0.1
+
+# To build in GCP
+gcloud builds submit --tag=gcr.io/gcp-for-azure-pros/dotnet-app:v0.1
