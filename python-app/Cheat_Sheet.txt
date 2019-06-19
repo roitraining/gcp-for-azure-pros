@@ -1,0 +1,18 @@
+
+# To run the Python app
+python3 main.py
+
+
+### App Engine Commands
+# Run this once to create the App Engine Project if needed
+gcloud app create --region=us-central
+
+
+# Standard requires the appengine_config.py file
+gcloud app deploy --version=one --quiet
+gcloud app deploy --version=two --no-promote --quiet
+
+
+
+
+
