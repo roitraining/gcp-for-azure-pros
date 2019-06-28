@@ -1,0 +1,11 @@
+from pyspark import SparkContext
+from pyspark.sql.types import *
+
+header = 'Game,Date,Winning_team,Score,Losing_team,Venue,City,Attendance'
+schema = StructType([StructField(colname, StringType(), True) for colname in header.split(',')])
+games = spark.read.schema(schema).csv('gs://gcp-for-azure-pros/superbowls-clean.csv')
+
+games.createOrReplaceTempView('superbowls')
+countsByWin = spark.sql('SELECT Winning_team, Count(Game) as wins FROM superbowls GROUP BY Winning_team ORDER BY wins DESC')
+
+print(countsByWin.take(5))
