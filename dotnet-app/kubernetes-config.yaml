@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dot-net-app
+  labels:
+    app: dot-net-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dot-net-app
+  template:
+    metadata:
+      labels:
+        app: dot-net-app
+    spec:
+      containers:
+      - name: dot-net-app
+        image: gcr.io/[your-project-id]/dotnet-app:v1.0
+        ports:
+        - containerPort: 8080
+          name: "dotnet"
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: dot-net-app-svc
+spec: 
+  ports: 
+     -  port: 80
+        protocol: TCP
+        targetPort: 8080
+  selector: 
+    app: dot-net-app
+  type: LoadBalancer
